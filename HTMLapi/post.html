@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>post</title>
+</head>
+<body onload="load()">
+    <div class="createPart">
+        <legend > Add Event </legend>  
+          <div >
+            <form method="POST" action="http://127.0.0.1:8000/api/events/list">
+              
+              <div class="mb-6">
+                  <label for="formGroupExampleInput" class="form-label">Event Name :</label>
+                  <input type="text" name="name" class="form-control" id="formGroupExampleInput" >
+                  
+                </div>
+              <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Price :</label>
+                  <input type="text" name="price" class="form-control" id="formGroupExampleInput" >
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Short Description</label>
+                  <input type="text" name="shortdesc" class="form-control" id="formGroupExampleInput" >
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Description</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="desc"></textarea>
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Image</label>
+                  <input class="form-control" id="formGroupExampleInput" rows="3" name="image">
+                 
+                </div>
+                <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Start date</label>
+                    <input type="date" class="form-control" id="formGroupExampleInput" rows="3" name="startdate">
+                   
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">End date</label>
+                    <input type="date" class="form-control" id="formGroupExampleInput" rows="3" name="enddate">
+                   
+                  </div>
+                  <div class="mb-3">
+                    <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Deadline</label>
+                    <input type="date" class="form-control" id="formGroupExampleInput" rows="3" name="deadline">
+                   
+                  </div>
+  
+                <div class="mb-3">
+                  <label for="formGroupExampleInput" class="form-label" style="margin-top: 20px">Agent ID</label>
+                  <input type="text" name="agentid" class="form-control" id="formGroupExampleInput" >
+                  
+                </div>
+                
+                <input type="submit" name="submit" value="Add Event" class="btn btn-primary login_button">
+            </form>  
+          </div>
+          
+      </div>
+      <script> 
+        function load(){
+            const xhttp=new XMLHttpRequest();
+            xhttp.onreadystatechange=function(){
+                if (this.readyState == 4 && this.status ==200 ){
+                    var obj_arr=JSON.parse(this.responseText);
+                    document.getElementById("name").innerHTML =obj_arr[0].name;
+                    document.getElementById("shortdesc").innerHTML =obj_arr[0].shortdesc;
+                    document.getElementById("desc").innerHTML =obj_arr[0].desc;
+                    document.getElementById("price").innerHTML =obj_arr[0].price;
+                    document.getElementById("startdate").innerHTML =obj_arr[0].startdate;
+                    document.getElementById("enddate").innerHTML =obj_arr[0].enddate;
+                    document.getElementById("deadline").innerHTML =obj_arr[0].deadline;
+                    document.getElementById("agentId").innerHTML =obj_arr[0].agentId;
+                }
+            };
+            xhttp.open("POST","http://127.0.0.1:8000/api/events/list");
+            xhttp.send();
+        }
+    </script>
+</body>
+</html>

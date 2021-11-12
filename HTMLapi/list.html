@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>list</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body onload="load()">
+    @foreach ($events as $events)
+    <li id="name"></li>
+    <li id="shortdesc"></li>
+    <li id="desc"></li>
+    <li id="price"></li>
+    <li id="startdate"></li>
+    <li id="enddate"></li>
+    <li id="deadline"></li>
+
+    <script> 
+    function load(){
+        const xhttp=new XMLHttpRequest();
+        xhttp.onreadystatechange=function(){
+            if (this.readyState == 4 && this.status ==200 ){
+                var obj_arr=JSON.parse(this.responseText);
+                document.getElementById("name").innerHTML =obj_arr[0].name;
+                document.getElementById("shortdesc").innerHTML =obj_arr[0].shortdesc;
+                document.getElementById("desc").innerHTML =obj_arr[0].desc;
+                document.getElementById("price").innerHTML =obj_arr[0].price;
+                document.getElementById("startdate").innerHTML =obj_arr[0].startdate;
+                document.getElementById("enddate").innerHTML =obj_arr[0].enddate;
+                document.getElementById("deadline").innerHTML =obj_arr[0].deadline;
+            }
+        };
+        xhttp.open("GET","http://127.0.0.1:8000/api/events/list");
+        xhttp.send();
+    }
+</script>
+</body>
+</html>
