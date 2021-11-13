@@ -26,6 +26,6 @@ class apiController extends Controller
         $events -> image = $req->image;
         $events -> agentId = $req->agentId;
         $events->save();
-        return ["Insertion Successful!!!"];
+        return $req;
     }
 }

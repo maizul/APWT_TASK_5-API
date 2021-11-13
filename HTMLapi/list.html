@@ -9,7 +9,6 @@
     <script src='main.js'></script>
 </head>
 <body onload="load()">
-    @foreach ($events as $events)
     <li id="name"></li>
     <li id="shortdesc"></li>
     <li id="desc"></li>
@@ -17,7 +16,7 @@
     <li id="startdate"></li>
     <li id="enddate"></li>
     <li id="deadline"></li>
-
+    
     <script> 
     function load(){
         const xhttp=new XMLHttpRequest();
@@ -37,5 +36,6 @@
         xhttp.send();
     }
 </script>
+
 </body>
 </html>
